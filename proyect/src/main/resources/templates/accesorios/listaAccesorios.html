@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>D Italia | Listado de Categorías</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+   <header th:insert="fragmentos/encabezado.html::main-menu"></header>
+
+    <main role="main">     
+      <hr>
+      <div class="container"> 
+
+        <div class="card">
+          <h4 class="card-header"><strong>Listado de Accesorios</strong></h4>              
+          <div class="card-body">
+            <a class="btn" style="background-color: #b8a076; color: white;" th:href="@{/accesorios/nueva}" role="button"><i class="fas fa-plus" aria-hidden="true"></i> Nueva</a>            
+            <hr>
+            <div class="alert alert-success" role="alert" th:if="${msg!=null}" th:text="${msg}"></div>
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Color</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Estatus</th>
+                  <th scope="col">Operaciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="accesorio: ${accesorios}">
+                  <th th:text="${accesorio.id}"></th>
+                  <td th:text="${accesorio.nombre}"></td>
+                  <td th:text="${accesorio.color}"></td>
+                  <td th:text="${accesorio.precio}"></td>
+                  <td th:text="${accesorio.estatus}"></td>
+                  <td>
+                    <a th:href="@{/accesorios/buscar(id=${accesorio.id})}" class="btn btn-sm" style="background-color: #CCCCFF;" role="button" title="Editar"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a th:href="@{/accesorios/eliminar(id=${accesorio.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-sm" style="background-color: #CCCCFF;" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <a th:href="@{/accesorios/detalle(id=${accesorio.id})}" class="btn btn-sm" style="background-color: #CCCCFF;" role="button" title="Detalles"><i class="fas fa-book" aria-hidden="true"></i></a>
+                  </td>
+                </tr>            
+              </tbody>
+              <tfoot>
+				  <tr>
+					  <td colspan="4" th:text="'Total Accesorios: '+${total}"></td>
+				  </tr>
+			  </tfoot>
+            </table>
+            
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    </main>
+
+	<footer class="footer" th:insert="fragmentos/pie.html::foot-page"></footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
+  </body>
+</html>

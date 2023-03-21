@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="eng" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>D´Italia | Listado de Vestidos</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <header th:insert="fragmentos/encabezado.html::main-menu"></header>
+
+    <main role="main">     
+      <hr>
+      <div class="container"> 
+
+        <div class="card">
+          <h4 class="card-header"><strong>Listado de Vestidos</strong></h4>              
+          <div class="card-body">
+            <a class="btn" style="background-color: #b8a076; color: white;" th:href="@{/vestidos/nueva}" role="button">
+				<i class="fas fa-plus" aria-hidden="true"></i> Nueva</a>            
+            <hr>
+            <div class="alert alert-success" role="alert" th:if="${msg!=null}" th:text="${msg}"></div>
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Folio</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Modelo</th>
+                  <th scope="col">Color</th>
+                  <th scope="col">Estatus</th>
+                  <th scope="col">Destacada</th>
+                  <th scope="col">Operaciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="vestido: ${vestidos}">
+                  <th th:text="${vestido.folio}"></th>
+                  <td th:text="${vestido.categoria.nombre}"></td>
+                  <td th:text="${vestido.modelo}"></td>
+                  <td th:text="${vestido.color}"></td>
+                  <td th:text="${vestido.estatus}"></td>
+                  <td>
+					  <span class="text-success" th:if="${vestido.destacado == 1}"> Si </span>
+					  <span class="text-secondary" th:unless="${vestido.destacado == 1}"> No </span>
+				  </td>
+                  <td>
+                    <a th:href="@{/vestidos/buscar(folio=${vestido.folio})}" class="btn btn-sm" style="background-color: #CCCCFF;" role="button" title="Editar"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a th:href="@{/vestidos/eliminar(folio=${vestido.folio})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-sm" style="background-color: #CCCCFF;" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <a th:href="@{/vestidos/detalle(folio=${vestido.folio})}" class="btn btn-sm" style="background-color: #CCCCFF;" role="button" title="Detalles"><i class="fas fa-book"></i></a>
+                  </td>
+                </tr>               
+              </tbody>
+              <tfoot>
+				  <tr>
+					  <td colspan="7" th:text="'Total Vestidos Registrados: '+${total}"></td>
+				  </tr>
+			  </tfoot>
+            </table>
+            <nav th:if="${vestidos.totalPages > 0}" aria-label="Page navigation example" >
+				<ul class="pagination justify-content-center">
+					<li class="page-item" th:classappend="${vestidos.number == 0 ? 'disabled' : ''}">
+						<a th:href="@{/vestidos/indexPaginado(page=${vestidos.number - 1})}" class="page-link">Back</a>
+					</li> 
+					<li class="page-item" th:classappend="${i eq vestidos.number + 1} ? 'active'" th:each="i : ${#numbers.sequence( 1, vestidos.totalPages, 1)}">
+						<a class="page-link" th:href="@{/vestidos/indexPaginado?page={tmpPag} (tmpPag=${i-1}) }" th:text="${i}" th:title="${'Page '+ i}" data-toggle="tooltip"></a>
+					</li>
+					<li class="page-item" th:classappend="${vestidos.number == (vestidos.totalPages - 1) ? 'disabled' : ''}">
+						<a th:href="@{/vestidos/indexPaginado(page=${vestidos.number + 1})}" class="page-link">Siguiente</a>
+					</li>
+				</ul>
+			</nav>
+            
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    </main>
+
+    <footer class="footer" th:insert="fragmentos/pie.html::foot-page"></footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
+  </body>
+</html>
