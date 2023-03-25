@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #b8a076;" th:fragment="main-menu">
-        <a class="navbar-brand" href="#">D´Italia</a>
+        <a class="navbar-brand" th:href="@{/}">D´Italia</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -9,21 +9,36 @@
             <li class="nav-item">
               <a class="nav-link active" th:href="@{/}">Inicio</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/categoria/index}">Categorias</a>
+            <li class="nav-item" sec:authorize="hasAnyAuthority('Administrador')">
+              <a class="nav-link active" th:href="@{/categoria/index}">Categorias</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/vestidos/indexPaginado}">Vestidos</a>
+            <li class="nav-item" sec:authorize="hasAnyAuthority('Administrador')">
+              <a class="nav-link active" th:href="@{/vestidos/indexPaginado}">Vestidos</a>
+            </li>  
+            <li class="nav-item" sec:authorize="hasAnyAuthority('Administrador')">
+              <a class="nav-link active" th:href="@{/accesorios/indexPaginado}">Accesorios</a>
+            </li> 
+            <li class="nav-item" sec:authorize="hasAnyAuthority('Administrador')">
+              <a class="nav-link active" href="#">Reservaciones</a>
+            </li> 
+            <li class="nav-item" sec:authorize="hasAnyAuthority('Administrador')">
+              <a class="nav-link active" th:href="@{/usuarios/index}">Usuarios</a>
+            </li> 
+            <li class="nav-item" sec:authorize="hasAnyAuthority('Administrador')">
+              <a class="nav-link active" th:href="@{/perfiles/index}">Perfiles</a>
             </li>  
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/accesorios/indexPaginado}">Accesorios</a>
-            </li> 
+              <a class="nav-link active" th:href="@{/acerca}">Acerca</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link active" th:href="@{/contacto}">Contacto</a>
+            </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Reservaciones</a>
-            </li>          
+              <a class="nav-link active" th:href="@{/mision}">Misión y Visión</a>
+            </li>        
           </ul>  
-          <a class="btn btn-light" href="#">Ingresar</a>&nbsp;
-          <a class="btn btn-light" href="#">Registrarse</a>&nbsp;
-          <a class="btn" style="background-color: rgb(255, 128, 128); color: white;" th:href="@{/logout}">Salir</a>
+          <a class="btn btn-light" th:href="@{/login}">Ingresar</a>&nbsp;
+          <a class="btn btn-light" th:href="@{/signup}">Registrarse</a>&nbsp;
+          <a class="btn" style="background-color: rgb(255, 128, 128); color: white;" sec:authorize="hasAnyAuthority('Administrador','Usuario')" th:href="@{/logout}">Salir</a>
         </div>
       </nav>

@@ -18,7 +18,7 @@
 
   <body>
 
-   <header th:insert="fragmentos/encabezado.html::main-menu"></header>
+   <header th:insert="~{fragmentos/encabezado.html::main-menu}"></header>
 
     <main role="main">     
       <hr>
@@ -64,7 +64,7 @@
 
     </main>
 
-	<footer class="footer" th:insert="fragmentos/pie.html::foot-page"></footer>
+	<footer class="footer" th:insert="~{fragmentos/pie.html::foot-page}"></footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

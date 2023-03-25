@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>D Italia | Misión - Visión</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+ 	<header th:insert="~{fragmentos/encabezado.html::main-menu}"></header>
+
+    <main role="main">     
+      <hr>
+      <div class="container"> 
+        <!--<div class="card">-->
+          <h4 class="card-header">Misión y Visión </h4>   
+          <br>           
+          
+          <div class="row">
+            <div class="col-sm-12">
+            <div class="card bg-withe text-black">
+                <img class="card-img" src="images/mision.avif" alt="Card image" width="700" height="300">
+                <div class="card-img-overlay">
+                  <h5 class="card-title" style="color: black;"> <strong>Misión</strong></h5>
+                  <p class="card-text" style="text-align: justify; color: black;">   Nuestra misión es brindar una experiencia excepcional de compra de vestidos y accesorios para eventos especiales como XV años, bodas, graduaciones y presentaciones de 3 años. Ofrecemos una amplia gama de diseños y estilos únicos para ayudar a nuestros clientes a encontrar el vestido perfecto que los haga sentir seguros y especiales en su gran día. Nos esforzamos por ofrecer un servicio al cliente excepcional y crear relaciones duraderas con nuestros clientes. </p>
+                 
+                </div>
+              </div>
+          </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-12">
+            <div class="card bg-withe text-black">
+                <img class="card-img" src="images/vision1.avif" alt="Card image" width="700" height="300">
+                <div class="card-img-overlay">
+                  <h5 class="card-title" style="color: black;"> <strong>Visión</strong></h5>
+                  <p class="card-text" style="text-align: justify; color: black;"> Nuestra visión es convertirnos en la tienda líder de vestidos y accesorios para eventos especiales en la región, reconocidos por nuestra calidad de productos y servicio excepcional al cliente. Buscamos expandir nuestra presencia en el mercado y ofrecer una experiencia de compra innovadora y personalizada que supere las expectativas de nuestros clientes. Nos comprometemos a mantener nuestro enfoque en la calidad, la creatividad y la excelencia en todo lo que hacemos. </p>
+                 
+                </div>
+              </div>
+          </div>
+          </div>
+          
+       <!--</div>--> 
+        
+      </div> <!-- /container -->
+
+    </main>
+     <hr>
+     
+	<footer class="footer" th:insert="~{fragmentos/pie.html::foot-page}"></footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>     
+  </body>
+</html>

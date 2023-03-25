@@ -17,7 +17,7 @@
 
   <body>
 
-    <header th:insert="fragmentos/encabezado.html::main-menu">
+    <header th:insert="~{fragmentos/encabezado.html::main-menu}">
       
     </header>
 
@@ -55,15 +55,15 @@
             <h6 class="card-title"><strong>Categoría: </strong> <span th:text="${vestido.categoria.nombre}"></span></h6>
             <h6 class="card-title"><strong>Color: </strong> <span th:text="${vestido.color}"></span></h6>                
             <p th:text="${vestido.descripcion}"></p>
-            <p><a class="btn btn-secondary" th:href="@{/vestidos/detalle(folio=${vestido.folio})}" role="button">Ver detalles &raquo;</a></p>            
-          </div>
-        </div>       
-		  <hr>	
+            <p><a class="btn" th:href="@{/vestidos/detalle(folio=${vestido.folio})}" role="button" style="background-color: #b8a076; color: white;">Ver detalles &raquo;</a></p>            
+            <br><br>
+          </div>      
+        </div>       	
       </div> <!-- /container -->
 
     </main>
 
-    <footer class="footer" th:insert="fragmentos/pie.html::foot-page">
+    <footer class="footer" th:insert="~{fragmentos/pie.html::foot-page}">
       
     </footer>
 

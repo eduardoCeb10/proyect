@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>D Italia | Acerca</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+   <header th:insert="~{fragmentos/encabezado.html::main-menu}"></header>
+
+    <main role="main">     
+      <hr>
+      <div class="container"> 
+        <!--<div class="card">-->
+          <h4 class="card-header">Acerca de <strong>D'Italia</strong> </h4>   
+          <br>           
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <img class="d-block w-100" src="images/logoitalia.png" alt="" height="auto">
+                  
+                  
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">D'Italia</h5>
+                  <p class="card-text" style="text-align: justify;">La tienda de vestidos D'Italia tiene como objetivo el desarrollo de una aplicación web que incluya todas las categorías de vestidos y accesorios que ofrece en su tienda. Esto permitirá a sus clientes consultar y explorar su amplio catálogo de productos. Además, la aplicación también ofrecerá la opción de reservar un vestido o accesorio específico, lo que garantizará que el cliente sea tratado como prioritario en la tienda. <br> 
+                   La aplicación web de D'Italia ofrecerá una experiencia eficiente y accesible para sus clientes, con la opción de realizar reservas en línea y acceder a su catálogo completo de productos.
+                  </p>
+                  <h5 class="card-title">Herramientas</h5>
+                  <p class="card-text" style="text-align: justify;">
+                    Se utilizaron diversas herramientas para el desarrollo y despliegue de la aplicación D'Italia, como Spring Boot Suite para el desarrollo eficiente de la aplicación Java, MariaDB como sistema de gestión de bases de datos para almacenar y gestionar la información de manera segura y eficiente, y Railway como plataforma de hosting especializada en el despliegue de aplicaciones web, lo que permitió un proceso de despliegue rápido y fácil.
+                    
+                  
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+       <!--</div>--> 
+        <hr>
+      </div> <!-- /container -->
+
+    </main>
+
+	<footer class="footer" th:insert="fragmentos/pie.html::foot-page"></footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
+  </body>
+</html>
