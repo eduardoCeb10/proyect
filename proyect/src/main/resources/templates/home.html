@@ -46,36 +46,18 @@
       <div class="container"> 
         <h2 class="font-weight-bold text-center text-capitalize">DESTACADOS</h2>
         <hr>
-        <!--<div class="row">
+        <div class="row" th:each="vestido:${vestidos}">
           <div class="col-md-3">            
-            <img class="rounded mx-auto d-block" src="images/vestidoMorado.png" alt="Generic placeholder image" width="220" height="220">            
+            <img class="rounded mx-auto d-block" th:src="@{logos/{img}(img=${vestido.imagen})}" alt="Generic placeholder image" width="220" height="220">            
           </div>
           <div class="col-md-9">
-            <h2>NOMBRE: Allison</h2>
-            <h6 class="card-title"><strong>Categoría: </strong> <span>XV años</span></h6>
-            <h6 class="card-title"><strong>Publicado: </strong> <span>2019-01-01 </span></h6>                
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn" style="background-color: #b8a076; color: white;" href="#" role="button">View details &raquo;</a></p>            
+            <h2 th:text="${vestido.modelo}"></h2>
+            <h6 class="card-title"><strong>Categoría: </strong> <span th:text="${vestido.categoria.nombre}"></span></h6>
+            <h6 class="card-title"><strong>Color: </strong> <span th:text="${vestido.color}"></span></h6>                
+            <p th:text="${vestido.descripcion}"></p>
+            <p><a class="btn btn-secondary" th:href="@{/vestidos/detalle(folio=${vestido.folio})}" role="button">Ver detalles &raquo;</a></p>            
           </div>
-        </div>-->  
-        <div class="table-responsive">
-			<table class="table table-striped">
-				<tr>
-				  <th scope="col">M O D E L O</th>
-                  <th scope="col">C A T E G O R I A</th>
-                  <th scope="col">C O L O R</th>
-                  <th scope="col">P R E C I O</th>
-                  <th scope="col"><center>I M A G E N</center></th>
-				</tr>
-				<tr th:each="vestido: ${vestidos}">
-                  <th th:text="${vestido.modelo}"></th>
-                  <td th:text="${vestido.categoria.nombre}"></td>
-                  <td th:text="${vestido.color}"></td>
-                  <td th:text="${vestido.precio}"></td>
-                  <td><center><img th:src="@{/images/{img}(img=${vestido.imagen})}" width="220" height="220"></center></td>
-				</tr>
-			</table>  
-		  </div>         
+        </div>       
 		  <hr>	
       </div> <!-- /container -->
 
