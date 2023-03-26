@@ -21,6 +21,8 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nombre;
+	private String paterno;
+	private String materno;
 	private String email;
 	private String username;
 	private String password;
@@ -29,60 +31,94 @@ public class Usuario {
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="usuarioperfil",joinColumns=@JoinColumn(name="idUsuario"),inverseJoinColumns=@JoinColumn(name="idPerfil"))
 	private List<Perfil> perfiles;
+	
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public String getPaterno() {
+		return paterno;
+	}
+
+	public void setPaterno(String paterno) {
+		this.paterno = paterno;
+	}
+
+	public String getMaterno() {
+		return materno;
+	}
+
+	public void setMaterno(String materno) {
+		this.materno = materno;
+	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public Integer getEstatus() {
 		return estatus;
 	}
+
 	public void setEstatus(Integer estatus) {
 		this.estatus = estatus;
 	}
+
 	public LocalDate getFechaRegistro() {
 		return fechaRegistro;
 	}
+
 	public void setFechaRegistro(LocalDate fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
+
 	public List<Perfil> getPerfiles() {
 		return perfiles;
 	}
+
 	public void setPerfiles(List<Perfil> perfiles) {
 		this.perfiles = perfiles;
 	}
+
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nombre=" + nombre + ", email=" + email + ", username=" + username
-				+ ", password=" + password + ", estatus=" + estatus + ", fechaRegistro=" + fechaRegistro + ", perfiles="
-				+ perfiles + "]";
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", paterno=" + paterno + ", materno=" + materno + ", email="
+				+ email + ", username=" + username + ", password=" + password + ", estatus=" + estatus
+				+ ", fechaRegistro=" + fechaRegistro + ", perfiles=" + perfiles + "]";
 	}
+
 	public void agregar(Perfil tempPerfil) {
 		if(perfiles==null) {
 			perfiles = new LinkedList<Perfil>();

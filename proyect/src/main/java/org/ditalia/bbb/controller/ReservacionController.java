@@ -8,6 +8,7 @@ import org.ditalia.bbb.service.IntServiceVestido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +39,7 @@ public class ReservacionController {
 	public String eliminar(@RequestParam("id") int idReservacion, RedirectAttributes model) {
 		serviceReservacion.eliminar(idReservacion);
 		model.addFlashAttribute("msg", "Reservacion eliminada");
-		return "redirect:/reservaciones/index";
+		return "redirect:/reservaciones/indexPaginado";
 	}
 	
 	@GetMapping("/nueva")
@@ -50,7 +51,9 @@ public class ReservacionController {
 	}
 	
 	@PostMapping("/guardar")
-	public String guardar(Reservacion reservacion, RedirectAttributes model) {
+	public String guardar(Reservacion reservacion,BindingResult result, RedirectAttributes model) {
+		if(reservacion.getId()==null) model.addFlashAttribute("msg", "Reservación agregada");
+		else model.addFlashAttribute("msg", "Reservación modificada");
 		serviceReservacion.guardar(reservacion);
 		return "redirect:/reservaciones/indexPaginado";
 	}
@@ -60,6 +63,8 @@ public class ReservacionController {
 		Reservacion reservacion = serviceReservacion.buscarPorId(idReservacion);
 		model.addAttribute("categorias", serviceCategoria.obtenerCategoria());
 		model.addAttribute("vestidos", serviceVestidos.obtenerVestido());
+		model.addAttribute("accesorios", serviceAccesorio.obtenerAccesorio());
+		model.addAttribute("reservaciones", serviceReservacion.obtenerReservacion());
 		model.addAttribute("reservacion", reservacion);
 		return "reservaciones/formReservacion";
 	}

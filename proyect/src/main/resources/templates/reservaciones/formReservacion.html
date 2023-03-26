@@ -94,7 +94,7 @@
 									<label for="color">Color</label>
 									<select class="form-control" name="color" id="color" th:field="*{vestido.color}">
 										<option value="">Selecciona un color</option>
-										<option th:each="vestido: ${vestidos}" th:value="${vestido.folio}" th:text="${vestido.color}"></option>
+										<option th:each="vestido: ${vestidos}" th:value="${reservacion.vestido.color}" th:text="${vestido.color}"></option>
 									</select>
 								</div>
 							</div>
@@ -103,7 +103,7 @@
 									<label for="talla">Talla</label>
 									<select class="form-control" name="talla" id="talla" th:field="*{vestido.talla}">
 										<option value="">Selecciona una talla</option>
-										<option th:each="vestido: ${vestidos}" th:value="${vestido.folio}" th:text="${vestido.talla}"></option>
+										<option th:each="vestido: ${vestidos}" th:value="${reservacion.vestido.talla}" th:text="${vestido.talla}"></option>
 									</select>
 								</div>
 							</div>

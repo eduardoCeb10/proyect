@@ -34,6 +34,8 @@
               <thead class="thead-light">
                 <tr>
                   <th scope="col">Nombre</th>
+                  <th scope="col">Apellido paterno</th>
+                  <th scope="col">Apellido Materno</th>
                   <th scope="col">Username</th>                  
                   <th scope="col">Email</th>
                   <th scope="col">Estatus</th>
@@ -43,6 +45,8 @@
               <tbody>
                 <tr th:each="usuario:${usuarios}">
                   <td th:text="${usuario.nombre}"></td>
+                  <td th:text="${usuario.paterno}"></td>
+                  <td th:text="${usuario.materno}"></td>
                   <td th:text="${usuario.username}"></td>                  
                   <td th:text="${usuario.email}"></td>
                   <td th:text="${usuario.estatus}"></td>
