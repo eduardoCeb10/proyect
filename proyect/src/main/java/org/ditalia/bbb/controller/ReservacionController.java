@@ -58,6 +58,8 @@ public class ReservacionController {
 	@GetMapping("/buscar")
 	public String buscar(@RequestParam("id")int idReservacion, Model model) {
 		Reservacion reservacion = serviceReservacion.buscarPorId(idReservacion);
+		model.addAttribute("categorias", serviceCategoria.obtenerCategoria());
+		model.addAttribute("vestidos", serviceVestidos.obtenerVestido());
 		model.addAttribute("reservacion", reservacion);
 		return "reservaciones/formReservacion";
 	}
