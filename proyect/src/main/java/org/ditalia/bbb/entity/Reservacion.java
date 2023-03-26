@@ -17,18 +17,22 @@ public class Reservacion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private LocalDate fecha = LocalDate.now();
+	
 	@OneToOne
 	@JoinColumn(name="folioVestido")
 	private Vestido vestido;
+	
 	@OneToOne
 	@JoinColumn(name="idAccesorio")
 	private Accesorio accesorio;
+	
 	@OneToOne
 	@JoinColumn(name="idCategoria")
 	private Categoria categoria;
-	@OneToOne
-	@JoinColumn(name="idUsuario")
-	private Usuario usuario;
+	
+	private String nombre;
+	private String apellidoPaterno;
+	private String apellidoMaterno;
 	public Integer getId() {
 		return id;
 	}
@@ -59,17 +63,28 @@ public class Reservacion {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	public Usuario getUsuario() {
-		return usuario;
+	public String getNombre() {
+		return nombre;
 	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	
+	public String getApellidoPaterno() {
+		return apellidoPaterno;
+	}
+	public void setApellidoPaterno(String apellidoPaterno) {
+		this.apellidoPaterno = apellidoPaterno;
+	}
+	public String getApellidoMaterno() {
+		return apellidoMaterno;
+	}
+	public void setApellidoMaterno(String apellidoMaterno) {
+		this.apellidoMaterno = apellidoMaterno;
+	}
 	@Override
 	public String toString() {
 		return "Reservacion [id=" + id + ", fecha=" + fecha + ", vestido=" + vestido + ", accesorio=" + accesorio
-				+ ", categoria=" + categoria + ", usuario=" + usuario + "]";
+				+ ", categoria=" + categoria + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno
+				+ ", apellidoMaterno=" + apellidoMaterno + "]";
 	}
-	
 }

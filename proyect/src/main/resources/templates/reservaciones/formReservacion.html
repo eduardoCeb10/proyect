@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="favicon.ico">
+
+	<title>D´Italia | Creación de Reservación</title>
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/static/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+	<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+	<link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+</head>
+
+<body>
+
+	<header th:insert="~{fragmentos/encabezado.html::main-menu}"></header>
+
+	<main role="main">
+		<hr>
+		<div class="container">
+
+			<div class="card">
+				<h4 class="card-header"><strong>Datos de la reservacion</strong></h4>
+				<div class="card-body">
+					<form method="post" th:action="@{/reservaciones/guardar}" enctype="multipart/form-data" th:object="${reservacion}">
+						<div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
+							Por favor corrija los siguientes errores:
+							<ul>
+								<li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+							</ul>
+						</div>
+						<div class="row">
+							<div class="col-sm">
+								<div class="form-group">
+									<label for="nombre">Nombre</label>
+									<input type="hidden" th:field="*{id}">
+									<input type="text" class="form-control" id="nombre" name="nombre"
+										th:field="*{nombre}" placeholder="Escriba su nombre." required>
+								</div>
+							</div>
+							<div class="col-sm">
+								<div class="form-group">
+									<label for="apellidoPaterno">Paterno</label>
+									<input type="text" class="form-control" id="apellidoPaterno" name="apellidoPaterno" th:field="*{apellidoPaterno}"
+										placeholder="Escriba su apellido paterno" required>
+								</div>
+							</div>
+							<div class="col-sm">
+								<div class="form-group">
+									<label for="apellidoMaterno">Materno</label>
+									<input type="text" class="form-control" id="apellidoMaterno" name="apellidoMaterno" th:field="*{apellidoMaterno}"
+										placeholder="Escriba su apellido materno" required>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm">
+								<div class="form-group">
+									<label for="categoria">Categoria</label>
+									<select class="form-control" name="categoria" id="categoria" th:field="*{categoria.id}">
+										<option value="">Selecciona una categoria</option>
+										<option th:each="categoria: ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="col-sm">
+								<div class="form-group">
+									<label for="vestido">Vestido</label>
+									<select class="form-control" name="vestido" id="vestido" th:field="*{vestido.folio}">
+										<option value="">Selecciona un vestido</option>
+										<option th:each="vestido: ${vestidos}" th:value="${vestido.folio}" th:text="${vestido.modelo}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="col-sm">
+								<div class="form-group">
+									<label for="accesorio">Accesorio</label>
+									<select class="form-control" name="accesorio" id="accesorio" th:field="*{accesorio.id}">
+										<option value="">Selecciona un accesorio</option>
+										<option th:each="accesorio: ${accesorios}" th:value="${accesorio.id}" th:text="${accesorio.nombre}"></option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm">
+								<div class="form-group">
+									<label for="color">Color</label>
+									<select class="form-control" name="color" id="color" th:field="*{vestido.color}">
+										<option value="">Selecciona un color</option>
+										<option th:each="vestido: ${vestidos}" th:value="${vestido.folio}" th:text="${vestido.color}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="col-sm">
+								<div class="form-group">
+									<label for="talla">Talla</label>
+									<select class="form-control" name="talla" id="talla" th:field="*{vestido.talla}">
+										<option value="">Selecciona una talla</option>
+										<option th:each="vestido: ${vestidos}" th:value="${vestido.folio}" th:text="${vestido.talla}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+			                    <label for="fecha">Fecha de la Reservacion</label>
+			                    <input type="text" class="form-control"  name="fecha" id="fecha" th:field="*{fecha}" placeholder="Fecha de publicacion" required>
+			                </div>
+						</div>
+						<hr>
+						<button type="submit" title="Reservar" class="btn"
+							style="background-color: #b8a076; color: white;">Reservar</button>
+					</form>
+				</div>
+			</div>
+		</div> <!-- /container -->
+
+	</main>
+
+	<footer class="footer" th:insert="fragmentos/pie.html::foot-page"></footer>
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{/tinymce/tinymce.min.js}"></script>
+	<script>
+		$(function () {
+			$("#fecha").datepicker({dateFormat: 'dd-mm-yy'});
+			}
+			);
+			
+			  
+		tinymce.init({
+			selector: '#descripcion',
+			plugins: "textcolor, table lists code",
+			toolbar: " undo redo | bold italic | alignleft aligncenter alignright alignjustify \n\
+			| bullist numlist outdent indent | forecolor backcolor table code"
+			});
+	</script>
+</body>
+
+</html>

@@ -19,7 +19,7 @@
               <a class="nav-link active" th:href="@{/accesorios/indexPaginado}">Accesorios</a>
             </li> 
             <li class="nav-item" sec:authorize="hasAnyAuthority('Administrador')">
-              <a class="nav-link active" href="#">Reservaciones</a>
+              <a class="nav-link active" th:href="@{/reservaciones/indexPaginado}">Reservaciones</a>
             </li> 
             <li class="nav-item" sec:authorize="hasAnyAuthority('Administrador')">
               <a class="nav-link active" th:href="@{/usuarios/index}">Usuarios</a>
