@@ -30,8 +30,17 @@ public class PerfilesController {
 		return "redirect:/perfiles/index";
 	}
 	
-	@GetMapping("/nueva")
-	public String nuevoPerfil(Perfil perfil) {
-		return "perfiles/formPerfil";
+	@GetMapping("/bloquear")
+	public String bloquearUsuario(@RequestParam ("id") int idPerfil, RedirectAttributes model) {
+		Perfil perfil = servicePerfil.buscarPorId(idPerfil);
+		model.addFlashAttribute("msg", perfil.getPerfil()+" bloqueado");
+		return "redirect:/perfiles/index";
+	}
+	
+	@GetMapping("/desbloquear")
+	public String desbloquearUsuario(@RequestParam ("id") int idPerfil, RedirectAttributes model) {
+		Perfil perfil = servicePerfil.buscarPorId(idPerfil);
+		model.addFlashAttribute("msg", perfil.getPerfil()+" desbloqueado");
+		return "redirect:/perfiles/index";
 	}
 }

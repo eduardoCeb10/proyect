@@ -60,4 +60,6 @@ public class VestidoServiceJpa implements IntServiceVestido {
 		return repoVestidos.findAll(page);
 	}
 
+	
+
 }

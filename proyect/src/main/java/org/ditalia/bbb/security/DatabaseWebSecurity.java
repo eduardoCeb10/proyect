@@ -35,13 +35,13 @@ public class DatabaseWebSecurity {
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests()
 		// Los recursos estáticos no requieren autenticación
-		.requestMatchers("/bootstrap/**","/images/**","/tinymce/**","/logos/**").permitAll()
+		.requestMatchers("/bootstrap/**","/css/**","/images/**","/tinymce/**","/logos/**").permitAll()
 		// Las vistas públicas no requieren autenticación
-		.requestMatchers("/", "/signup", "/guardar", "/acerca", "/contacto", "/mision", "/search", "/vestidos/detalles/**").permitAll()
+		.requestMatchers("/", "/signup", "/guardar", "/acerca", "/contacto", "/mision", "/search", "/vestidos/detalle/**").permitAll()
 		//asignar permisos a URL'S por roles
 		.requestMatchers("/usuarios/**").hasAnyAuthority("Administrador")
 		.requestMatchers("/categorias/**").hasAnyAuthority("Administrador")
-		.requestMatchers("/vestidos/**").hasAnyAuthority("Administrador")
+		.requestMatchers("/vestidos/**").hasAnyAuthority("Administrador","Usuario")
 		.requestMatchers("/accesorios/**").hasAnyAuthority("Administrador")
 		.requestMatchers("/perfiles/**").hasAnyAuthority("Administrador")
 		// Todas las demás URLs de la Aplicación requieren autenticación

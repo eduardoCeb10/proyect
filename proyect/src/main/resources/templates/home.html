@@ -54,8 +54,25 @@
             <h2 th:text="${vestido.modelo}"></h2>
             <h6 class="card-title"><strong>Categoría: </strong> <span th:text="${vestido.categoria.nombre}"></span></h6>
             <h6 class="card-title"><strong>Color: </strong> <span th:text="${vestido.color}"></span></h6>                
-            <p th:text="${vestido.descripcion}"></p>
+            <p th:utext="${vestido.descripcion}"></p>
             <p><a class="btn" th:href="@{/vestidos/detalle(folio=${vestido.folio})}" role="button" style="background-color: #b8a076; color: white;">Ver detalles &raquo;</a></p>            
+            <br><br>
+          </div>      
+        </div> 
+        <hr>
+        
+        <h2 class="font-weight-bold text-center text-capitalize">Accesorios disponibles</h2>
+        <hr>
+        <div class="row" th:each="accesorio:${accesorios}">
+          <div class="col-md-3">            
+            <img class="rounded mx-auto d-block" th:src="@{images/{img}(img=${accesorio.imagen})}" alt="Generic placeholder image" width="220" height="220">            
+          </div>
+          <div class="col-md-9">
+            <h2 th:text="${accesorio.nombre}"></h2>
+            <h6 class="card-title"><strong>Categoría: </strong> <span th:text="${accesorio.categoria.nombre}"></span></h6>
+            <h6 class="card-title"><strong>Color: </strong> <span th:text="${accesorio.color}"></span></h6>                
+            <p th:utext="${accesorio.descripcion}"></p>
+            <p><a class="btn" th:href="@{/accesorios/detalle(id=${accesorio.id})}" role="button" style="background-color: #b8a076; color: white;">Ver detalles &raquo;</a></p>            
             <br><br>
           </div>      
         </div>       	

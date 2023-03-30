@@ -8,7 +8,7 @@
 	<meta name="author" content="">
 	<link rel="icon" href="favicon.ico">
 
-	<title>EmpleosApp | Listado de Perfiles</title>
+	<title>D'Italia | Listado de Perfiles</title>
 	<!-- Bootstrap core CSS -->
 	<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
 	<!-- Custom styles for this template -->
@@ -19,7 +19,7 @@
 
   <body>
 
-    <header th:insert="fragmentos/encabezado.html::main-menu"></header>
+    <header th:insert="~{fragmentos/encabezado.html::main-menu}"></header>
 
     <main role="main">     
       <hr>
@@ -46,8 +46,8 @@
                   <td th:text="${perfil.perfil}"></td>
                   <td>
                     <a th:href="@{/perfiles/eliminar(id=${perfil.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
-                    <a href="#" onclick="return confirm('¿Quiere bloquear el acceso al usuario?')" class="btn btn-success btn-sm" role="button" title="Bloquear el acceso al sistema para este usuario."><i class="fas fa-lock" aria-hidden="true"></i></a>	
-                    <a href="#" onclick="return confirm('¿Desea desbloquear el usuario?')" class="btn btn-success btn-sm" role="button" title="Permitir el acceso al sistema a este usuario."><i class="fas fa-unlock" aria-hidden="true"></i></a>
+                    <a th:href="@{/perfiles/bloquear(id=${perfil.id})}" onclick="return confirm('¿Quiere bloquear el acceso al usuario?')" class="btn btn-success btn-sm" role="button" title="Bloquear el acceso al sistema para este usuario."><i class="fas fa-lock" aria-hidden="true"></i></a>	
+                    <a th:href="@{/perfiles/desbloquear(id=${perfil.id})}" onclick="return confirm('¿Desea desbloquear el usuario?')" class="btn btn-success btn-sm" role="button" title="Permitir el acceso al sistema a este usuario."><i class="fas fa-unlock" aria-hidden="true"></i></a>
                   </td>
                 </tr>                                            
               </tbody>

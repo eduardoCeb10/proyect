@@ -37,8 +37,19 @@
               <a class="nav-link active" th:href="@{/mision}">Misión y Visión</a>
             </li>        
           </ul>  
-          <a class="btn btn-light" th:href="@{/login}">Ingresar</a>&nbsp;
+          <!--<a class="btn btn-light" th:href="@{/login}">Ingresar</a>&nbsp;
           <a class="btn btn-light" th:href="@{/signup}">Registrarse</a>&nbsp;
-          <a class="btn" style="background-color: rgb(255, 128, 128); color: white;" sec:authorize="hasAnyAuthority('Administrador','Usuario')" th:href="@{/logout}">Salir</a>
+          <a class="btn" style="background-color: rgb(255, 128, 128); color: white;" sec:authorize="hasAnyAuthority('Administrador','Usuario')" th:href="@{/logout}">Salir</a>-->
+          <div class="d-flex" role="search" style="padding-right: 20px;">
+	          <div sec:authorize="isAnonymous()">
+			    <a class="btn btn-light" th:href="@{/login}">Ingresar</a>&nbsp;
+	          	<a class="btn btn-light" th:href="@{/signup}">Registrarse</a>&nbsp;
+			  </div>
+	          <div sec:authorize="isAuthenticated()">
+				<span class="text-light"><strong>Bienvenido: </strong></span>
+				<span class="text-light" sec:authentication="name" style="padding-right: 20px;"></span>&nbsp;&nbsp;
+				<a class="btn" style="background-color: rgb(255, 128, 128); color: white;" th:href="@{/logout}">Salir</a> 
+			  </div>
+          </div>
         </div>
       </nav>

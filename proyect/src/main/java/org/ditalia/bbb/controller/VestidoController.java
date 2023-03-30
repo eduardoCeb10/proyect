@@ -106,6 +106,9 @@ public class VestidoController {
 	@GetMapping("/detalle")
 	public String detalle(@RequestParam("folio")int idVestido, Model model) {
 		Vestido vestido = serviceVestido.buscarPorId(idVestido);
+		double aux = vestido.getPrecio()*0.16;
+		double x = aux+vestido.getPrecio();
+		model.addAttribute("iva", x);
 		model.addAttribute("vestido", vestido);
 		return "vestidos/detalle";
 	}

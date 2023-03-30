@@ -14,4 +14,5 @@ public interface IntServiceVestido {
 	public void eliminar (Integer idVestido);
 	public long numVestidos();
 	Page<Vestido>buscarTodas(Pageable page);
+	
 }

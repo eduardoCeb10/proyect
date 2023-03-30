@@ -6,6 +6,7 @@ import java.util.List;
 import org.ditalia.bbb.entity.Perfil;
 import org.ditalia.bbb.entity.Usuario;
 import org.ditalia.bbb.entity.Vestido;
+import org.ditalia.bbb.service.IntServiceAccesorio;
 import org.ditalia.bbb.service.IntServiceUsuarios;
 import org.ditalia.bbb.service.IntServiceVestido;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class HomeController {
 	private IntServiceVestido serviceVestido;
 	@Autowired
 	private IntServiceUsuarios serviceUsuario;
+	@Autowired
+	private IntServiceAccesorio serviceAccesorio;
 	 @Autowired
 	private PasswordEncoder passwordEncoder;
 	 
@@ -39,6 +42,7 @@ public class HomeController {
 			}
 		}
 		model.addAttribute("vestidos", vestidos);
+		model.addAttribute("accesorios", serviceAccesorio.obtenerAccesorio());
 		return "home";
 	}
 	
