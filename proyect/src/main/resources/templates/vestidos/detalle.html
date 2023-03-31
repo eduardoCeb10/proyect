@@ -33,14 +33,13 @@
               <h4 class="card-header">Aplicar para <strong th:text="${vestido.modelo}"></strong></h4>              
               <div class="card-body">
 				  <div class="alert alert-danger" role="alert" sec:authorize="isAnonymous()">
-					  ¿Te interesa este vestido? <strong>Registrate</strong> y despues ingresa para hacer tu reservación.
+					  ¿Te interesa este vestido? <strong>Registrate</strong> y después ingresa para hacer tu reservación.
 				  </div>
                 <h5 class="card-title"><strong>Categoría: </strong> <span th:text="${vestido.categoria.nombre}"></span></h5>
                 <h6 class="card-title"><strong>Precio: </strong> <span th:text="${vestido.precio}"></span></h6>    
-                <h6 class="card-title"><strong>Precio con IVA: </strong> <span th:text="${iva}"></span></h6>    
+                <h6 class="card-title"><strong>Precio con IVA incluido: </strong> <span th:text="${iva}"></span></h6>    
                 <h6 class="card-title"><strong>Talla: </strong><span th:text="${vestido.talla}"></span></h6>
-                <p class="card-text" th:text="${vestido.estatus}"></p>
-                
+                <h6 class="card-title"><strong>Estatus: </strong><span th:text="${vestido.estatus}"></span></h6>
                 <div class="card bg-light mb-3" >
                   <div class="card-body">
                     <h5 class="card-title">Descripcion del vestido</h5>

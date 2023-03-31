@@ -6,6 +6,8 @@ import org.ditalia.bbb.service.IntServiceCategoria;
 import org.ditalia.bbb.service.IntServiceReservacion;
 import org.ditalia.bbb.service.IntServiceVestido;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,8 +31,9 @@ public class ReservacionController {
 	private IntServiceVestido serviceVestidos;
 	
 	@GetMapping(value="/indexPaginado")
-	public String mostrarIndexPaginado(Model model) {
-		model.addAttribute("reservaciones", serviceReservacion.obtenerReservacion());
+	public String mostrarIndexPaginado(Model model, Pageable page) {
+		Page<Reservacion>lista = serviceReservacion.buscarTodas(page);
+		model.addAttribute("reservaciones", lista);
 		model.addAttribute("total", serviceReservacion.numReservacion());
 		return "reservaciones/listaReservaciones";
 	}
@@ -52,10 +55,10 @@ public class ReservacionController {
 	
 	@PostMapping("/guardar")
 	public String guardar(Reservacion reservacion,BindingResult result, RedirectAttributes model) {
-		if(reservacion.getId()==null) model.addFlashAttribute("msg", "Reservación agregada");
+		if(reservacion.getId()==null) model.addFlashAttribute("msg", "¡Tu reservación fue realizada con éxito!");
 		else model.addFlashAttribute("msg", "Reservación modificada");
 		serviceReservacion.guardar(reservacion);
-		return "redirect:/reservaciones/indexPaginado";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/buscar")

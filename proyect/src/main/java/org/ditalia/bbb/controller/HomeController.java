@@ -3,6 +3,7 @@ package org.ditalia.bbb.controller;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.ditalia.bbb.entity.Accesorio;
 import org.ditalia.bbb.entity.Perfil;
 import org.ditalia.bbb.entity.Usuario;
 import org.ditalia.bbb.entity.Vestido;
@@ -41,8 +42,15 @@ public class HomeController {
 				vestidos.add(ve);
 			}
 		}
+		List<Accesorio> acc= serviceAccesorio.obtenerAccesorio();
+		List<Accesorio> accesorios = new LinkedList<>();
+		for(Accesorio ac : acc) {
+			if(ac.getDestacado()==1) {
+				accesorios.add(ac);
+			}
+		}
 		model.addAttribute("vestidos", vestidos);
-		model.addAttribute("accesorios", serviceAccesorio.obtenerAccesorio());
+		model.addAttribute("accesorios", accesorios);
 		return "home";
 	}
 	
@@ -61,7 +69,7 @@ public class HomeController {
 		per.setId(2);
 		usuario.agregar(per);
 		serviceUsuario.agregar(usuario);
-		return "home";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/acerca")

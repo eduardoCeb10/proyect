@@ -31,7 +31,8 @@
 				<i class="fas fa-plus" aria-hidden="true"></i> Nueva</a>            
             <hr>
             <div class="alert alert-success" role="alert" th:if="${msg!=null}" th:text="${msg}"></div>
-            <table class="table table-hover">
+            <div class="table-responsive">
+				<table class="table table-hover">
               <thead class="thead-light">
                 <tr>
                   <th scope="col">Folio</th>
@@ -55,9 +56,9 @@
 					  <span class="text-secondary" th:unless="${vestido.destacado == 1}"> No </span>
 				  </td>
                   <td>
-                    <a th:href="@{/vestidos/buscar(folio=${vestido.folio})}" class="btn btn-sm" style="background-color: #CCCCFF;" role="button" title="Editar"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                    <a th:href="@{/vestidos/eliminar(folio=${vestido.folio})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-sm" style="background-color: #CCCCFF;" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
-                    <a th:href="@{/vestidos/detalle(folio=${vestido.folio})}" class="btn btn-sm" style="background-color: #CCCCFF;" role="button" title="Detalles"><i class="fas fa-book"></i></a>
+                    <a th:href="@{/vestidos/buscar(folio=${vestido.folio})}" class="btn btn-sm" style="background-color: #CCCCFF; margin: 3px" role="button" title="Editar"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a th:href="@{/vestidos/eliminar(folio=${vestido.folio})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-sm" style="background-color: #CCCCFF; margin: 3px" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <a th:href="@{/vestidos/detalle(folio=${vestido.folio})}" class="btn btn-sm" style="background-color: #CCCCFF; margin: 3px" role="button" title="Detalles"><i class="fas fa-book"></i></a>
                   </td>
                 </tr>               
               </tbody>
@@ -67,10 +68,11 @@
 				  </tr>
 			  </tfoot>
             </table>
+			</div>
             <nav th:if="${vestidos.totalPages > 0}" aria-label="Page navigation example" >
 				<ul class="pagination justify-content-center">
 					<li class="page-item" th:classappend="${vestidos.number == 0 ? 'disabled' : ''}">
-						<a th:href="@{/vestidos/indexPaginado(page=${vestidos.number - 1})}" class="page-link">Back</a>
+						<a th:href="@{/vestidos/indexPaginado(page=${vestidos.number - 1})}" class="page-link">Anterior</a>
 					</li> 
 					<li class="page-item" th:classappend="${i eq vestidos.number + 1} ? 'active'" th:each="i : ${#numbers.sequence( 1, vestidos.totalPages, 1)}">
 						<a class="page-link" th:href="@{/vestidos/indexPaginado?page={tmpPag} (tmpPag=${i-1}) }" th:text="${i}" th:title="${'Page '+ i}" data-toggle="tooltip"></a>

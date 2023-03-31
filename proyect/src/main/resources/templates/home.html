@@ -43,8 +43,9 @@
       </div>
       <hr>
 
-      <div class="container"> 
-        <h2 class="font-weight-bold text-center text-capitalize">DESTACADOS</h2>
+      <div class="container">
+		<div class="alert alert-success" role="alert" th:if="${msg!=null}" th:text="${msg}"></div> 
+        <h2 class="font-weight-bold text-center text-capitalize">Vestidos Destacados</h2>
         <hr>
         <div class="row" th:each="vestido:${vestidos}">
           <div class="col-md-3">            
@@ -61,7 +62,7 @@
         </div> 
         <hr>
         
-        <h2 class="font-weight-bold text-center text-capitalize">Accesorios disponibles</h2>
+        <h2 class="font-weight-bold text-center text-capitalize">Accesorios destacados</h2>
         <hr>
         <div class="row" th:each="accesorio:${accesorios}">
           <div class="col-md-3">            

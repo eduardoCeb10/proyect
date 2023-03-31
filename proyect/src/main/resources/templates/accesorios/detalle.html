@@ -32,20 +32,23 @@
             <div class="card">
               <h4 class="card-header">Aplicar para <strong th:text="${accesorio.nombre}"></strong></h4>              
               <div class="card-body">
+				  <div class="alert alert-danger" role="alert" sec:authorize="isAnonymous()">
+					  ¿Te interesa este vestido? <strong>Registrate</strong> y después ingresa para hacer tu reservación.
+				  </div>
                 <h5 class="card-title"><strong>Categoría: </strong> <span th:text="${accesorio.categoria.nombre}"></span></h5>
-                <h6 class="card-title"><strong>Precio: </strong> <span th:text="${accesorio.precio}"></span></h6>                
+                <h6 class="card-title"><strong>Precio: </strong> $<span th:text="${accesorio.precio}"></span></h6>          
+                <h6 class="card-title"><strong>Precio con IVA incluido: </strong> $<span th:text="${iva}"></span></h6>          
                 <h6 class="card-title"><strong>Color: </strong><span th:text="${accesorio.color}"></span></h6>
-                <p class="card-text" th:text="${accesorio.estatus}"></p>
-                
+          		<h6 class="card-title"><strong>Estatus: </strong><span th:text="${accesorio.estatus}"></span></h6>
                 <div class="card bg-light mb-3" >
                   <div class="card-body">
-                    <h5 class="card-title">Descripcion del accesorio</h5>
+                    <h5 class="card-title">Descripción del accesorio</h5>
                     <p class="card-text" th:utext="${accesorio.descripcion}"></p>
                   </div>
                 </div>   
                 
-              <a href="#">
-				   <button title="Quiero reservar este vestido!">Reservar
+              <a th:href="@{/reservaciones/nueva}">
+				   <button title="Quiero reservar este accesorio!" sec:authorize="isAuthenticated() and hasAnyAuthority('Usuario')">Reservar
 				  <div class="star-1">
 				    <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 784.11 815.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><defs></defs><g id="Layer_x0020_1"><metadata id="CorelCorpID_0Corel-Layer"></metadata><path d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z" class="fil0"></path></g></svg>
 				  </div>

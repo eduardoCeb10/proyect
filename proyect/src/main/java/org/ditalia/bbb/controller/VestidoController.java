@@ -3,7 +3,6 @@ package org.ditalia.bbb.controller;
 import java.beans.PropertyEditorSupport;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import org.ditalia.bbb.entity.Vestido;
 import org.ditalia.bbb.service.IntServiceCategoria;
 import org.ditalia.bbb.service.IntServiceVestido;
@@ -44,8 +43,16 @@ public class VestidoController {
 	@GetMapping(value = "/indexPaginado")
 	public String mostrarIndexPaginado(Model model, Pageable page) {
 		Page<Vestido> lista = serviceVestido.buscarTodas(page);
+		/*List<Vestido>aux= new LinkedList<>();
+		for(Vestido ve : lista) {
+			if(ve.getModelo().equalsIgnoreCase("Sin vestido")) {
+				break;
+			} else {
+				aux.add(ve);
+			}
+		}*/
 		model.addAttribute("vestidos", lista);
-		model.addAttribute("total", serviceVestido.numVestidos());
+		model.addAttribute("total", serviceVestido.numVestidos()-1);
 		return "vestidos/listaVestidos";
 	}
 	

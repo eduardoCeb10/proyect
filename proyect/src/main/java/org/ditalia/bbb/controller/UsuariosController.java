@@ -3,6 +3,8 @@ package org.ditalia.bbb.controller;
 import org.ditalia.bbb.entity.Usuario;
 import org.ditalia.bbb.service.IntServiceUsuarios;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +20,9 @@ public class UsuariosController {
 	 private IntServiceUsuarios serviceUsuarios;
 	 
 	@GetMapping("/index")
-	public String mostrarIndex(Model model) {
-		model.addAttribute("usuarios", serviceUsuarios.obtenerUsuarios());
+	public String mostrarIndex(Model model, Pageable page) {
+		Page<Usuario>lista = serviceUsuarios.buscarTodas(page);
+		model.addAttribute("usuarios", lista);
 		model.addAttribute("total", serviceUsuarios.obtenerUsuarios().size());
 		return "usuarios/listaUsuarios";
 	}

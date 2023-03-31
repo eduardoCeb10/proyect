@@ -19,6 +19,7 @@ public class Accesorio {
 	private String color;
 	private Double precio;
 	private String estatus;
+	private Integer destacado;
 	private String descripcion;
 	private String imagen;
 	@OneToOne
@@ -54,6 +55,12 @@ public class Accesorio {
 	public void setEstatus(String estatus) {
 		this.estatus = estatus;
 	}
+	public Integer getDestacado() {
+		return destacado;
+	}
+	public void setDestacado(Integer destacado) {
+		this.destacado = destacado;
+	}
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -75,6 +82,9 @@ public class Accesorio {
 	@Override
 	public String toString() {
 		return "Accesorio [id=" + id + ", nombre=" + nombre + ", color=" + color + ", precio=" + precio + ", estatus="
-				+ estatus + ", descripcion=" + descripcion + ", imagen=" + imagen + ", categoria=" + categoria + "]";
+				+ estatus + ", destacado=" + destacado + ", descripcion=" + descripcion + ", imagen=" + imagen
+				+ ", categoria=" + categoria + "]";
 	}
+	
+	
 }

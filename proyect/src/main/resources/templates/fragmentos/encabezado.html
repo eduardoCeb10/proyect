@@ -46,8 +46,8 @@
 	          	<a class="btn btn-light" th:href="@{/signup}">Registrarse</a>&nbsp;
 			  </div>
 	          <div sec:authorize="isAuthenticated()">
-				<span class="text-light"><strong>Bienvenido: </strong></span>
-				<span class="text-light" sec:authentication="name" style="padding-right: 20px;"></span>&nbsp;&nbsp;
+				<b><span class="text-light">Bienvenido: </span>
+				<span class="text-light" sec:authentication="name"></span></b>&nbsp;&nbsp;&nbsp;&nbsp;
 				<a class="btn" style="background-color: rgb(255, 128, 128); color: white;" th:href="@{/logout}">Salir</a> 
 			  </div>
           </div>

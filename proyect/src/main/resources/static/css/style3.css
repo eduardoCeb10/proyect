@@ -11,7 +11,6 @@
  font-size: 17px;
  border: 1px solid;
  font-family: inherit;
- text-transform: uppercase;
  color: var(--color);
  z-index: 1;
 }
@@ -45,7 +44,7 @@
 }
 
 .button:hover {
- color: rgb(10, 25, 30);
+ color: rgb(255, 255, 255);
 }
 
 .button:active {

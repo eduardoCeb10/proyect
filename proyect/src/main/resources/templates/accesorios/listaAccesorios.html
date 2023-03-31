@@ -30,7 +30,8 @@
             <a class="btn" style="background-color: #b8a076; color: white;" th:href="@{/accesorios/nueva}" role="button"><i class="fas fa-plus" aria-hidden="true"></i> Nueva</a>            
             <hr>
             <div class="alert alert-success" role="alert" th:if="${msg!=null}" th:text="${msg}"></div>
-            <table class="table table-hover">
+            <div class="table-responsive">
+			<table class="table table-hover">
               <thead class="thead-light">
                 <tr>
                   <th scope="col">Id</th>
@@ -49,9 +50,9 @@
                   <td th:text="${accesorio.precio}"></td>
                   <td th:text="${accesorio.estatus}"></td>
                   <td>
-                    <a th:href="@{/accesorios/buscar(id=${accesorio.id})}" class="btn btn-sm" style="background-color: #CCCCFF;" role="button" title="Editar"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                    <a th:href="@{/accesorios/eliminar(id=${accesorio.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-sm" style="background-color: #CCCCFF;" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
-                    <a th:href="@{/accesorios/detalle(id=${accesorio.id})}" class="btn btn-sm" style="background-color: #CCCCFF;" role="button" title="Detalles"><i class="fas fa-book" aria-hidden="true"></i></a>
+                    <a th:href="@{/accesorios/buscar(id=${accesorio.id})}" class="btn btn-sm" style="background-color: #CCCCFF; margin: 3px" role="button" title="Editar"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a th:href="@{/accesorios/eliminar(id=${accesorio.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-sm" style="background-color: #CCCCFF; margin: 3px" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <a th:href="@{/accesorios/detalle(id=${accesorio.id})}" class="btn btn-sm" style="background-color: #CCCCFF; margin: 3px" role="button" title="Detalles"><i class="fas fa-book" aria-hidden="true"></i></a>
                   </td>
                 </tr>            
               </tbody>
@@ -61,7 +62,20 @@
 				  </tr>
 			  </tfoot>
             </table>
-            
+			</div>
+             <nav th:if="${accesorios.totalPages > 0}" aria-label="Page navigation example" >
+				<ul class="pagination justify-content-center">
+					<li class="page-item" th:classappend="${accesorios.number == 0 ? 'disabled' : ''}">
+						<a th:href="@{/accesorios/indexPaginado(page=${accesorios.number - 1})}" class="page-link">Anterior</a>
+					</li> 
+					<li class="page-item" th:classappend="${i eq accesorios.number + 1} ? 'active'" th:each="i : ${#numbers.sequence( 1, accesorios.totalPages, 1)}">
+						<a class="page-link" th:href="@{/accesorios/indexPaginado?page={tmpPag} (tmpPag=${i-1}) }" th:text="${i}" th:title="${'Page '+ i}" data-toggle="tooltip"></a>
+					</li>
+					<li class="page-item" th:classappend="${accesorios.number == (accesorios.totalPages - 1) ? 'disabled' : ''}">
+						<a th:href="@{/accesorios/indexPaginado(page=${accesorios.number + 1})}" class="page-link">Siguiente</a>
+					</li>
+				</ul>
+			</nav>
           </div>
         </div>
       </div> <!-- /container -->

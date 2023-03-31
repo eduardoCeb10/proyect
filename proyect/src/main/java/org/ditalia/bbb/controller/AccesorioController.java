@@ -30,8 +30,16 @@ public class AccesorioController {
 	@GetMapping("/indexPaginado")
 	public String mostrarIndexPaginado(Model model, Pageable page) {
 		Page<Accesorio> lista = serviceAccesorio.buscarTodas(page);
+		/*List<Accesorio> aux= new LinkedList<>();
+		for(Accesorio ac : lista) {
+			if(ac.getNombre().equalsIgnoreCase("Sin accesorio")) {
+				break;
+			}else {
+				aux.add(ac);
+			}
+		}*/
 		model.addAttribute("accesorios", lista);
-		model.addAttribute("total", serviceAccesorio.numAccesorios());
+		model.addAttribute("total", serviceAccesorio.numAccesorios()-1);
 		return "accesorios/listaAccesorios";
 	}
 	
@@ -84,6 +92,9 @@ public class AccesorioController {
 	@GetMapping("/detalle")
 	public String detalle(@RequestParam("id")int idAccesorio, Model model) {
 		Accesorio accesorio= serviceAccesorio.buscarPorId(idAccesorio);
+		double aux = accesorio.getPrecio()*0.16;
+		double x = aux+accesorio.getPrecio();
+		model.addAttribute("iva", x);
 		model.addAttribute("accesorio", accesorio);
 		return "accesorios/detalle";
 	}
