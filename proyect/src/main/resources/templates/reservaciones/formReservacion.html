@@ -47,14 +47,14 @@
 							</div>
 							<div class="col-sm">
 								<div class="form-group">
-									<label for="apellidoPaterno">Paterno</label>
+									<label for="apellidoPaterno">Apellido Paterno</label>
 									<input type="text" class="form-control" id="apellidoPaterno" name="apellidoPaterno" th:field="*{apellidoPaterno}"
 										placeholder="Escriba su apellido paterno" required>
 								</div>
 							</div>
 							<div class="col-sm">
 								<div class="form-group">
-									<label for="apellidoMaterno">Materno</label>
+									<label for="apellidoMaterno">Apellido Materno</label>
 									<input type="text" class="form-control" id="apellidoMaterno" name="apellidoMaterno" th:field="*{apellidoMaterno}"
 										placeholder="Escriba su apellido materno" required>
 								</div>
@@ -81,10 +81,20 @@
 							</div>
 							<div class="col-sm">
 								<div class="form-group">
-									<label for="accesorio">Accesorio</label>
-									<select class="form-control" name="accesorio" id="accesorio" th:field="*{accesorio.id}">
-										<option value="">Selecciona un accesorio</option>
-										<option th:each="accesorio: ${accesorios}" th:value="${accesorio.id}" th:text="${accesorio.nombre}"></option>
+									<label for="color">Color del Vestido</label>
+									<select class="form-control" name="color" id="color" th:field="*{vestido.color}">
+										<option value="null">Selecciona un color</option>
+										<option th:each="color:${colores}" th:value="${color}"
+										 th:text="${color}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="col-sm">
+								<div class="form-group">
+									<label for="talla">Talla del Vestido</label>
+									<select class="form-control" name="talla" id="talla" th:field="*{vestido.talla}">
+										<option value="null">Selecciona una talla</option>
+										<option th:each="talla:${tallas}" th:value="${talla}" th:text="${talla}"></option>
 									</select>
 								</div>
 							</div>
@@ -92,42 +102,32 @@
 						<div class="row">
 							<div class="col-sm">
 								<div class="form-group">
-									<label for="color">Color</label>
-									<select class="form-control" name="color" id="color" th:field="*{vestido.color}">
-										<option value="">Selecciona un color</option>
-										<option value="Blanco">Blanco</option>
-										<option value="Beige">Beige</option>
-										<option value="Rojo">Rojo</option>
-										<option value="Azul">Azul</option>
-										<option value="Rosa">Rosa</option>
-										<option value="Violeta">Violeta</option>
-										<option value="Morado">Morado</option>
-										<option value="Negro">Negro</option>
-										<option value="Gris">Gris</option>
-										<option value="Vino">Vino</option>
-										<option value="Cafe">Cafe</option>
-										<option value="Verde">Verde</option>
-										<option value="Dorado">Dorado</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-sm">
-								<div class="form-group">
-									<label for="talla">Talla</label>
-									<select class="form-control" name="talla" id="talla" th:field="*{vestido.talla}">
-										<option value="">Selecciona una talla</option>
-										<option value="Extra Chica">Extra Chica</option>
-										<option value="Chica">Chica</option>
-										<option value="Mediana">Mediana</option>
-										<option value="Grande">Grande</option>
-										<option value="Extra Grande">Extra Grande</option>
+									<label for="accesorio">Accesorio</label>
+									<select class="form-control" name="accesorio" id="accesorio" th:field="*{accesorio.id}">
+										<option value="">Selecciona un accesorio</option>
+										<option th:each="accesorio: ${accesorios}" th:value="${accesorio.id}" th:text="${accesorio.nombre}"></option>
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
-			                    <label for="fecha">Fecha de la Reservacion</label>
-			                    <input type="text" class="form-control"  name="fecha" id="fecha" th:field="*{fecha}" placeholder="Fecha de publicacion" required>
-			                </div>
+									<label for="color">Color del accesorio</label>
+									<select class="form-control" name="color" id="color" th:field="*{accesorio.color}">
+										<option value="null">Selecciona un color</option>
+										<option th:each="color:${coloresA}" th:value="${color}" th:text="${color}"></option>
+									</select>
+								</div>	
+								<div class="col-sm">
+									<div class="form-group">
+			                    		<label for="fecha">Fecha de la Reservación</label>
+			                    		<input type="text" class="form-control"  name="fecha" id="fecha" th:field="*{fecha}" placeholder="Fecha de reservación" required>
+			                		</div>
+			               		 </div>
+			                	<div class="col-sm">
+			                		<div class="form-group">
+			                    		<label for="hora">Hora de la Reservación</label>
+			                    		<input type="time" class="form-control" name="hora" id="hora" th:field="*{hora}"  min="09:00" max="18:30"><!--th:format="'HH:mm:ss'"-->
+			                		</div>
+								</div>				
 						</div>
 						<hr>
 							<button type="submit" title="reservar" class="button"> Reservar </button>
@@ -138,7 +138,7 @@
 
 	</main>
 
-	<footer class="footer" th:insert="fragmentos/pie.html::foot-page"></footer>
+	<footer class="footer" th:insert="~{fragmentos/pie.html::foot-page}"></footer>
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->

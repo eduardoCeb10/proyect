@@ -22,7 +22,7 @@ public class Vestido {
 	private String estatus;
 	private Integer destacado;
 	private String descripcion;
-	private String imagen="vestidoBoda.png";
+	private String imagen="no-image.png";
 
 	@OneToOne
 	@JoinColumn(name="idCategoria")

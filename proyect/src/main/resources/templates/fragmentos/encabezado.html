@@ -9,6 +9,9 @@
             <li class="nav-item">
               <a class="nav-link active" th:href="@{/}">Inicio</a>
             </li>
+            <li class="nav-item" sec:authorize="hasAnyAuthority('Usuario')">
+              <a class="nav-link active" th:href="@{/reservaciones/misReservaciones}">Mis Reservaciones</a>
+            </li>
             <li class="nav-item" sec:authorize="hasAnyAuthority('Administrador')">
               <a class="nav-link active" th:href="@{/categoria/index}">Categorias</a>
             </li>

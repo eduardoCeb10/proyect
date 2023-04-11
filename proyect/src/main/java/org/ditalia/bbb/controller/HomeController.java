@@ -8,6 +8,7 @@ import org.ditalia.bbb.entity.Perfil;
 import org.ditalia.bbb.entity.Usuario;
 import org.ditalia.bbb.entity.Vestido;
 import org.ditalia.bbb.service.IntServiceAccesorio;
+import org.ditalia.bbb.service.IntServiceCategoria;
 import org.ditalia.bbb.service.IntServiceUsuarios;
 import org.ditalia.bbb.service.IntServiceVestido;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,28 +30,68 @@ public class HomeController {
 	private IntServiceUsuarios serviceUsuario;
 	@Autowired
 	private IntServiceAccesorio serviceAccesorio;
+	@Autowired
+	private IntServiceCategoria serviceCategoria;
 	 @Autowired
 	private PasswordEncoder passwordEncoder;
 	 
-	
-	@GetMapping("/")
-	public String mostrarIndex(Model model) {
-		List<Vestido> aux = serviceVestido.obtenerVestido();
+	@PostMapping("/buscar")
+	public String buscarVestidos(Model model, String palabraClave, Integer idCategoria) {
+		String titulo="", titulo2="";
+		List<Vestido>todos = serviceVestido.obtenetTodosVestidos();
 		List<Vestido>vestidos = new LinkedList<>();
-		for(Vestido ve : aux) {
-			if(ve.getDestacado()==1) {
-				vestidos.add(ve);
-			}
-		}
+		for(Vestido ve : todos) {	if(ve.getDestacado()==1) vestidos.add(ve); }
 		List<Accesorio> acc= serviceAccesorio.obtenerAccesorio();
 		List<Accesorio> accesorios = new LinkedList<>();
-		for(Accesorio ac : acc) {
-			if(ac.getDestacado()==1) {
-				accesorios.add(ac);
-			}
+		for(Accesorio ac : acc) {	if(ac.getDestacado()==1) accesorios.add(ac);	}
+		
+		if(palabraClave.equals("") && idCategoria  != null) {
+			//esta condicion es para buscar por categoria sino se proporciona una palabra clave
+			model.addAttribute("vestidos",serviceVestido.buscarPorCategoria(idCategoria));
+			model.addAttribute("accesorios", serviceAccesorio.buscarPorCategoria(idCategoria));
+			titulo = "Vestidos por Categoria";
+			titulo2= "Accesorios por Categoria";
+		}else if(!palabraClave.equals("") && idCategoria == null){
+			//buscar por palabra clave
+			model.addAttribute("vestidos", serviceVestido.buscarPorColorYModelo(palabraClave));
+			model.addAttribute("accesorios", serviceAccesorio.buscarPorColorYNombre(palabraClave));
+			titulo = "Vestidos por color o modelo";
+			titulo2 = "Accesorios por nombre";
+		} else if(palabraClave.equals("") && idCategoria == null) {
+			model.addAttribute("vestidos", vestidos);
+			titulo = "Vestidos destacados";
+			model.addAttribute("accesorios", accesorios);
+			titulo2 = "Accesorios Destacados";
+			return "redirect:/";
+		} else {
+			titulo = "Vestidos";
+			model.addAttribute("vestidos", serviceVestido.obtenerVestido(palabraClave, idCategoria));
+			titulo2 = "Accesorios";
+			model.addAttribute("accesorios", serviceAccesorio.obtenerAccesorio(palabraClave, idCategoria));
 		}
+		
+		model.addAttribute("categorias", serviceCategoria.obtenerCategoria());
+		model.addAttribute("titulo", titulo);
+		model.addAttribute("titulo2", titulo2);
+		return "home";
+	}
+	 
+	 
+	@GetMapping("/")
+	public String mostrarIndex(Model model) {
+		List<Vestido>todos = serviceVestido.obtenetTodosVestidos();
+		List<Vestido>vestidos = new LinkedList<>();
+		
+		for(Vestido ve : todos) {	if(ve.getDestacado()==1) vestidos.add(ve); }
+		List<Accesorio> acc= serviceAccesorio.obtenerAccesorio();
+		List<Accesorio> accesorios = new LinkedList<>();
+		for(Accesorio ac : acc) {	if(ac.getDestacado()==1) accesorios.add(ac);	}
+		
+		model.addAttribute("categorias", serviceCategoria.obtenerCategoria());
+		model.addAttribute("titulo", "Vestidos Destacados");
 		model.addAttribute("vestidos", vestidos);
 		model.addAttribute("accesorios", accesorios);
+		
 		return "home";
 	}
 	

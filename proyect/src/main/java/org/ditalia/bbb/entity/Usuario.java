@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,6 +33,9 @@ public class Usuario {
 	@JoinTable(name="usuarioperfil",joinColumns=@JoinColumn(name="idUsuario"),inverseJoinColumns=@JoinColumn(name="idPerfil"))
 	private List<Perfil> perfiles;
 	
+	@OneToMany(mappedBy="username")
+	private List<Reservacion>reservaciones;
+
 	public Integer getId() {
 		return id;
 	}
@@ -112,13 +116,22 @@ public class Usuario {
 		this.perfiles = perfiles;
 	}
 
+	public List<Reservacion> getReservaciones() {
+		return reservaciones;
+	}
+
+	public void setReservaciones(List<Reservacion> reservaciones) {
+		this.reservaciones = reservaciones;
+	}
+
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nombre=" + nombre + ", paterno=" + paterno + ", materno=" + materno + ", email="
 				+ email + ", username=" + username + ", password=" + password + ", estatus=" + estatus
-				+ ", fechaRegistro=" + fechaRegistro + ", perfiles=" + perfiles + "]";
+				+ ", fechaRegistro=" + fechaRegistro + ", perfiles=" + perfiles + ", reservaciones=" + reservaciones
+				+ "]";
 	}
-
+	
 	public void agregar(Perfil tempPerfil) {
 		if(perfiles==null) {
 			perfiles = new LinkedList<Perfil>();

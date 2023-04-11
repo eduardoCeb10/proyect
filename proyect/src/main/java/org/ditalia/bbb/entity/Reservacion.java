@@ -1,6 +1,7 @@
 package org.ditalia.bbb.entity;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,29 +11,34 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="reservaciones")
+@Table(name = "reservaciones")
 public class Reservacion {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private LocalDate fecha = LocalDate.now();
-	
+
+	//@DateTimeFormat(pattern = "HH:mm:ss")
+	private LocalTime hora;// = LocalTime.now();
+
 	@OneToOne
-	@JoinColumn(name="folioVestido")
+	@JoinColumn(name = "folioVestido")
 	private Vestido vestido;
-	
+
 	@OneToOne
-	@JoinColumn(name="idAccesorio")
+	@JoinColumn(name = "idAccesorio")
 	private Accesorio accesorio;
-	
+
 	@OneToOne
-	@JoinColumn(name="idCategoria")
+	@JoinColumn(name = "idCategoria")
 	private Categoria categoria;
-	
+
 	private String nombre;
 	private String apellidoPaterno;
 	private String apellidoMaterno;
+	private String username;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -44,6 +50,12 @@ public class Reservacion {
 	}
 	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
+	}
+	public LocalTime getHora() {
+		return hora;
+	}
+	public void setHora(LocalTime hora) {
+		this.hora = hora;
 	}
 	public Vestido getVestido() {
 		return vestido;
@@ -81,10 +93,17 @@ public class Reservacion {
 	public void setApellidoMaterno(String apellidoMaterno) {
 		this.apellidoMaterno = apellidoMaterno;
 	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	@Override
 	public String toString() {
-		return "Reservacion [id=" + id + ", fecha=" + fecha + ", vestido=" + vestido + ", accesorio=" + accesorio
-				+ ", categoria=" + categoria + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno
-				+ ", apellidoMaterno=" + apellidoMaterno + "]";
+		return "Reservacion [id=" + id + ", fecha=" + fecha + ", hora=" + hora + ", vestido=" + vestido + ", accesorio="
+				+ accesorio + ", categoria=" + categoria + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno
+				+ ", apellidoMaterno=" + apellidoMaterno + ", username=" + username + "]";
 	}
+
 }

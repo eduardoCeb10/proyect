@@ -19,10 +19,11 @@ public class VestidoServiceJpa implements IntServiceVestido {
 	@Autowired
 	private VestidosRepository repoVestidos;
 	
-	
 	@Override
-	public List<Vestido> obtenerVestido() {
-		// TODO Auto-generated method stub
+	public List<Vestido> obtenerVestido(String palabraClave, Integer idCategoria) {
+		if(palabraClave != null) {
+			return repoVestidos.findAll(palabraClave, idCategoria);
+		}
 		return repoVestidos.findAll();
 	}
 
@@ -60,6 +61,34 @@ public class VestidoServiceJpa implements IntServiceVestido {
 		return repoVestidos.findAll(page);
 	}
 
-	
+	@Override
+	public List<Vestido> obtenetTodosVestidos() {
+		// TODO Auto-generated method stub
+		return repoVestidos.findAll();
+	}
 
+	@Override
+	public List<Vestido> buscarPorCategoria(Integer idCategoria) {
+		// TODO Auto-generated method stub
+		return repoVestidos.buscarPorCategoria(idCategoria);
+	}
+
+	@Override
+	public List<Vestido> buscarPorColorYModelo(String palabraClave) {
+		// TODO Auto-generated method stub
+		if(palabraClave != null) {
+			return repoVestidos.buscarPorColorYModelo(palabraClave);
+		}
+		return repoVestidos.findAll();
+	}
+
+	/*@Override
+	public List<Vestido> buscarPorCategoria(Integer idCategoria) {
+		// TODO Auto-generated method stub
+		if(idCategoria != null) {
+			return repoVestidos.buscarPorCategorias(idCategoria);
+		}
+		return repoVestidos.findAll();
+		
+	}*/
 }

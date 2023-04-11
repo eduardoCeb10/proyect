@@ -55,4 +55,36 @@ public class ReservacionServiceJpa implements IntServiceReservacion {
 		// TODO Auto-generated method stub
 		return repoReservacion.findAll(page);
 	}
+
+	@Override
+	public List<Reservacion> obtenerReservacionesPorUsuario(String usuario) {
+		// TODO Auto-generated method stub
+		return repoReservacion.buscarPorUsername(usuario);
+	}
+
+	@Override
+	public Reservacion obtenerPdf(int idReservacion) {
+		// TODO Auto-generated method stub
+		return repoReservacion.buscarReservacion(idReservacion);
+	}
+
+	@Override
+	public List<String> obtenerColores() {
+		// TODO Auto-generated method stub
+		return repoReservacion.colores();
+	}
+
+	@Override
+	public List<String> obtenerColoresAccesorio() {
+		// TODO Auto-generated method stub
+		return repoReservacion.coloresA();
+	}
+
+	@Override
+	public List<String> obtenerTallas() {
+		// TODO Auto-generated method stub
+		return repoReservacion.tallas();
+	}
+
+
 }

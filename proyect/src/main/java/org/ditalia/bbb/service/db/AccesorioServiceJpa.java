@@ -59,4 +59,24 @@ public class AccesorioServiceJpa implements IntServiceAccesorio {
 		return repoAccesorios.findAll(page);
 	}
 
+	@Override
+	public List<Accesorio> buscarPorCategoria(Integer idCategoria) {
+		// TODO Auto-generated method stub
+		return repoAccesorios.buscarPorCategoria(idCategoria);
+	}
+
+	@Override
+	public List<Accesorio> buscarPorColorYNombre(String palabraClave) {
+		// TODO Auto-generated method stub
+		return repoAccesorios.buscarPorColorYNombre(palabraClave);
+	}
+
+	@Override
+	public List<Accesorio> obtenerAccesorio(String palabraClave, Integer idCategoria) {
+		if(palabraClave != null) {
+			return repoAccesorios.findAll(palabraClave, idCategoria);
+		}
+		return repoAccesorios.findAll();
+	}
+
 }

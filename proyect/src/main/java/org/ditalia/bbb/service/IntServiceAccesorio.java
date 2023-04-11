@@ -9,6 +9,9 @@ import org.springframework.data.domain.Pageable;
 public interface IntServiceAccesorio {
 
 	public List<Accesorio>obtenerAccesorio();
+	public List<Accesorio>buscarPorCategoria(Integer idCategoria);
+	public List<Accesorio>buscarPorColorYNombre(String palabraClave);
+	public List<Accesorio>obtenerAccesorio(String palabraClave, Integer idCategoria);
 	public void guardar (Accesorio accesorio);
 	public Accesorio buscarPorId(Integer idAccesorio);
 	public void eliminar (Integer idAccesorio);

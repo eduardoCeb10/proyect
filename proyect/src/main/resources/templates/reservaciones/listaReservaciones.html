@@ -39,9 +39,9 @@
                   <th scope="col">Fecha de Reservacion</th>
                   <th scope="col">Categoria</th>
                   <th scope="col">Vestido</th>
-                  <th scope="col">Accesorio</th>
                   <th scope="col">Color</th>
                   <th scope="col">Talla</th>
+                  <th scope="col">Accesorio</th>                  
                   <th scope="col">Operaciones</th>
                 </tr>
               </thead>
@@ -53,9 +53,9 @@
                   <td th:text="${reservacion.fecha}"></td>
                   <td th:text="${reservacion.categoria.nombre}"></td>
                   <td th:text="${reservacion.vestido.modelo}"></td>
-                  <td th:text="${reservacion.accesorio.nombre}"></td>
                   <td th:text="${reservacion.vestido.color}"></td>
                   <td th:text="${reservacion.vestido.talla}"></td>
+                  <td th:text="${reservacion.accesorio.nombre}"></td>                 
                   <td>
                     <a th:href="@{/reservaciones/buscar(id=${reservacion.id})}" class="btn btn-sm" style="background-color: #CCCCFF; margin: 3px" role="button" title="Editar"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
                     <a th:href="@{/reservaciones/eliminar(id=${reservacion.id})}" onclick="return confirm('¿Estas seguro?')" class="btn btn-sm" style="background-color: #CCCCFF; margin: 3px" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>

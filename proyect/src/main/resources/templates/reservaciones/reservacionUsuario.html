@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="eng" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="favicon.ico">
+
+	<title>D´Italia | Listado de Reservaciones</title>
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+	<link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+	<link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<header th:insert="~{fragmentos/encabezado.html::main-menu}"></header>
+
+	<main role="main">
+		<hr>
+		<div class="container">
+			<div class="alert alert-success" role="alert" th:if="${msg!=null}" th:text="${msg}"></div>
+			<div class="row">
+			<div class="col-md-6" th:each="reservacion:${reservaciones}">
+				<div class="card">
+					<div class="card-header">
+						<h5>Datos reservación</h5>
+					</div>
+					<div class="card-body">
+						
+						<h5 class="card-title"><b>Reservación a nombre de: </b><strong th:text="${reservacion.nombre}"></strong>&nbsp;<strong th:text="${reservacion.apellidoPaterno}"></strong>&nbsp;<strong th:text="${reservacion.apellidoMaterno}"></strong></h5>
+						
+						<p class="card-text">
+							<b>Usuario: </b><span th:text="${reservacion.username}"></span>
+							<br><b>Categoria: </b><span th:text="${reservacion.categoria.nombre}"></span>
+							<br><b>Vestido: </b><span th:text="${reservacion.vestido.modelo}"></span>
+							<br><b>Color vestido: </b><span th:text="${reservacion.vestido.color}"></span>
+							<br><b>Talla: </b><span th:text="${reservacion.vestido.talla}"></span>
+							<br><b>Accesorio: </b><span th:text="${reservacion.accesorio.nombre}"></span>
+							<br><b>Color accesorio: </b><span th:text="${reservacion.accesorio.color}"></span>
+							<br><b>Fecha de reservación: </b><span th:text="${reservacion.fecha}"></span> <b>- Hora de reservación: </b><span th:text="${reservacion.hora}"></span>
+						</p>
+						<center>
+							<a th:href="@{/reservaciones/buscar(id=${reservacion.id})}" class="btn" style="background-color: #CCCCFF; margin: 3px" role="button" title="Editar"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+							<a th:href="@{/reservaciones/elimina(id=${reservacion.id})}" onclick="return confirm('¿Deseas eliminar esta reservación?')" class="btn" style="background-color: #CCCCFF; margin: 3px" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+							<a th:href="@{/pdf/generar-pdf(id=${reservacion.id})}" class="btn" style="background-color: #CCCCFF; margin: 3px" title="Generar PDF."><i class="fas fa-folder-open"> Abrir archivo.</i></a>
+						</center>
+					</div>
+				</div>
+				<br>
+			</div>
+			<hr>
+		   </div>
+		</div><br> <!-- /container -->
+
+	</main>
+
+	<footer class="footer" th:insert="~{fragmentos/pie.html::foot-page}"></footer>
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

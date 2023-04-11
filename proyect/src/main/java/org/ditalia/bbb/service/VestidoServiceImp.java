@@ -25,11 +25,6 @@ public class VestidoServiceImp implements IntServiceVestido {
 		v1.setDescripcion("Vestido mediano");
 		vestidos.add(v1);
 	}
-	@Override
-	public List<Vestido> obtenerVestido() {
-		// TODO Auto-generated method stub
-		return vestidos;
-	}
 
 	@Override
 	public void guardar(Vestido vestido) {
@@ -62,6 +57,28 @@ public class VestidoServiceImp implements IntServiceVestido {
 
 	@Override
 	public Page<Vestido> buscarTodas(Pageable page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Vestido> obtenetTodosVestidos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Vestido> obtenerVestido(String palabraClave, Integer idCategoria) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Vestido> buscarPorCategoria(Integer idCategoria) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Vestido> buscarPorColorYModelo(String palabraClave) {
 		// TODO Auto-generated method stub
 		return null;
 	}

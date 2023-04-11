@@ -12,5 +12,6 @@ public interface IntServiceUsuarios {
 	public Usuario buscarPorId(Integer idUsuario);
 	public void eliminar(Integer idUsuario);
 	public long totalUsuarios();
+	//public Usuario buscarPorUsername(String username);
 	Page<Usuario>buscarTodas(Pageable page);
 }

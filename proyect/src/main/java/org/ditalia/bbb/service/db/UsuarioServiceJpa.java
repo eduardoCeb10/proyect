@@ -57,4 +57,9 @@ public class UsuarioServiceJpa implements IntServiceUsuarios {
 		return repoUsuario.findAll(page);
 	}
 
+	/*@Override
+	public Usuario buscarPorUsername(String username) {
+		return repoUsuario.findByUsername(username);
+	}*/
+
 }

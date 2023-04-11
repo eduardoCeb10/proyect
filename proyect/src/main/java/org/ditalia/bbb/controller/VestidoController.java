@@ -35,7 +35,7 @@ public class VestidoController {
 	
 	@GetMapping("/index")
 	public String mostrarIndex(Model model) {
-		model.addAttribute("vestidos", serviceVestido.obtenerVestido());
+		model.addAttribute("vestidos", serviceVestido.obtenetTodosVestidos());
 		model.addAttribute("total", serviceVestido.numVestidos());
 		return "vestidos/listaVestidos";
 	}
