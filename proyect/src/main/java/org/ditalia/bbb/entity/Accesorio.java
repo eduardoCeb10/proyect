@@ -21,7 +21,7 @@ public class Accesorio {
 	private String estatus;
 	private Integer destacado;
 	private String descripcion;
-	private String imagen;
+	private String imagen="no-imagen.png";
 	@OneToOne
 	@JoinColumn(name="idCategoria")
 	private Categoria categoria;

@@ -36,6 +36,7 @@
                 <tr>
                   <th scope="col">Id</th>
                   <th scope="col">Nombre</th>
+                  <th scope="col">Categoria</th>
                   <th scope="col">Color</th>
                   <th scope="col">Precio</th>
                   <th scope="col">Estatus</th>
@@ -46,6 +47,7 @@
                 <tr th:each="accesorio: ${accesorios}">
                   <th th:text="${accesorio.id}"></th>
                   <td th:text="${accesorio.nombre}"></td>
+                   <td th:text="${accesorio.categoria.nombre}"></td>
                   <td th:text="${accesorio.color}"></td>
                   <td th:text="${accesorio.precio}"></td>
                   <td th:text="${accesorio.estatus}"></td>
